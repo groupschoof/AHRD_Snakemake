@@ -1,0 +1,118 @@
+h1. AHRD Snakemake
+
+"AHRD":https://github.com/groupschoof/AHRD (Automated Assignment of Human Readable Descriptions) annotates proteins with descriptions and GO terms.
+The preparations to run AHRD include making protein databases locally available, performing sequence similarity searches on said databases and creating configuration files.
+
+Snakemake is a python based worflow utility that is used here to perform all neccesarry steps to run AHRD.
+The user only has to provide the query fasta-files as well as the required bandwith, storage space and computing power.
+
+h2. Table of contents
+
+# "Getting started":#1-getting-started
+# "Hardware requirements":#1-hardware-requirements
+## "Storage Space":#21-storage-space
+## "AHRD's Memory Usage":#22-ahrd's-memory-usage
+## "Runtime Examples":#23-runtime-examples
+# "License":#3-license
+# "Authors":#4-authors
+
+
+h2. 1 Getting started
+
+* Install the python 3 version of miniconda from here: "https://docs.conda.io/en/latest/miniconda.html":https://docs.conda.io/en/latest/miniconda.html
+
+* Install mamba and git:
+@conda install -c conda-forge -c bioconda mamba git@
+
+* Clone the ahrd_snakemake pipeline:
+@git clone https://github.com/groupschoof/AHRD_snakemake.git@
+
+* Create an empty conda environment:
+@conda env create --name ahrd_snakemake@
+
+* ... and use mamba to install packages in it faster than with conda:
+@mamba env update --name ahrd_snakemake --file ahrd_snakemake/workflow/environment.yaml@
+
+* Activate the conda environment:
+@conda activate ahrd_snakemake@
+
+* Go to the resources subfolder:
+@cd ahrd_snakemake/resources@
+
+* Provide the protein sequences that are to be annotated, eg:
+@wget ftp://ftp.ensemblgenomes.org/pub/release-51/plants/fasta/oryza_sativa/pep/Oryza_sativa.IRGSP-1.0.pep.all.fa.gz@
+@gunzip Oryza_sativa.IRGSP-1.0.pep.all.fa.gz@
+
+* Edit the species.tsv file to include the desired protein sequence files:
+@nano species.tsv@
+(Put the name of the species in the first collumn and the path of the fasta file in the second
+eg.: Oryza_sativa   ../resources/Oryza_sativa.IRGSP-1.0.pep.all.fa
+Use tabs as column separtor!)
+
+
+* Go to the workflow folder:
+@cd ../workflow@
+
+* Start the workflow:
+@snakemake --use-conda --snakefile snakefile.smk@
+
+* Once the workflow is finished you will find your annotations (species.ahrd_output.tsv) in the results folder
+
+h2. 2 Hardware requirements
+
+h3. 2.1 Storage Space
+
+| resources | Reference GO annotations | 13 GB |
+| | SwissProt | 0.09 GB |
+| | Uniref90 | 30 GB |
+| | Query Fasta Files | each 0.02-0.13 GB |
+| results | SwissProt DiamondDB | 2.74 GB |
+| | Uniref90 DiamondDB | 60 GB |
+| | SwissProt Search Results | each 0.2-1.5 GB |
+| | Uniref 90 Search Results | each 0.6-5 GB |
+| workflow | snakemake folder | 1.6 GB |
+| Overall | | ca. 130 GB|
+
+The resources are automatically downloaded (except the query fasta files).
+So this also indicates the bandwidth / data usage requirements.
+
+h3. 2.2 AHRD's Memory Usage
+
+Formula:
+11000+fastaSizeInMB*540 = projectedMemUsageInMB
+
+Example 1 (<i>Oryza sativa</i>):
+11000 + 23 MB * 540 = 23420 MB = 23GB
+
+Example 2 (<i>Hordeum vulgare</i>):
+11000 + 131 MB * 540 = 81740 MB = 82GB
+
+h3. 2.3 Runtime Examples
+
+| Download | Reference GO annotations | | 4min |
+| | Uniref90 | | 3h | |
+| Diamond | Create Uniref90 | 48 Cores | 21min |
+| | Search Rize in Uniref90 | 32 Cores | 1.5h |
+| | Search Barley in Uniref90 | 32 Cores | 4h |
+| AHRD | Annotate Rize | 8 Cores | 3.3h |
+| | Annotate Barley | 8 Cores | 3.5h |
+
+Download times depend on your location relative to the uniprot servers, how busy the servers are and of course your connection.
+
+Diamond scales very well. Give it more cores and memory and it will put them to good use.
+
+AHRD's bootleneck is parsing the data. The actual annotation step is quick by comparison. Nonetheless,  it's parallelized but doesn't scale very well.
+
+h2. 3 License
+
+See attached file LICENSE.txt for details.
+
+h2. 4 Authors
+
+Florian Boecker and Prof. Dr. Heiko Schoof
+
+INRES Crop Bioinformatics
+University of Bonn
+Katzenburgweg 2
+53115 Bonn
+Germany

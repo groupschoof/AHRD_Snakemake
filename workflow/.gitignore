@@ -1,0 +1,8 @@
+# ignore slurm logs
+slurm-*.out
+# ignore the benchmark directory
+/benchmark/
+# ignore the logs directory
+/logs/
+# ignore the .snakemake directory
+/.snakemake/
