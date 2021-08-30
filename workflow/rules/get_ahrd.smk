@@ -4,6 +4,7 @@ rule get_ahrd:
     benchmark: "benchmark/get_ahrd.txt"
     conda: "../envs/get_ahrd.yaml"
     shell:
-        "rm -rf results/AHRD/;"
-        "git clone --branch separate_go_prediction_release https://github.com/groupschoof/AHRD.git results/AHRD;"
-        "cd results/AHRD && ant dist"
+        "rm -rf results/AHRD/ &> {log};"
+        "git clone --branch separate_go_prediction_release https://github.com/groupschoof/AHRD.git results/AHRD &>> {log};"
+        "cd results/AHRD;"
+        "ant dist &>> ../../{log}"
