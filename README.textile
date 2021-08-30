@@ -46,7 +46,7 @@ h2. 1 Getting started
 * Edit the species.tsv file to include the desired protein sequence files:
 @nano species.tsv@
 (Put the name of the species in the first collumn and the path of the fasta file in the second
-eg.: Oryza_sativa   ../resources/Oryza_sativa.IRGSP-1.0.pep.all.fa
+eg.: Oryza_sativa   resources/Oryza_sativa.IRGSP-1.0.pep.all.fa
 Use tabs as column separtor!)
 
 
