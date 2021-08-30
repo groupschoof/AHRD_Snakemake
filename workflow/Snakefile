@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 
 #configfile: "config.yaml"
-species_table = pd.read_table("../resources/species.tsv").set_index("species")
+species_table = pd.read_table("resources/species.tsv").set_index("species")
 SPECIES = species_table.index.tolist()
 
 def get_species_fasta(wildcards):
@@ -24,5 +24,5 @@ include: "rules/run_ahrd.smk"
 
 rule all:
     input:
-        expand("../results/{species}.ahrd_output.tsv", species=SPECIES)
+        expand("results/{species}.ahrd_output.tsv", species=SPECIES)
 

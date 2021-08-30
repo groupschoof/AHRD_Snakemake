@@ -28,16 +28,16 @@ h2. 1 Getting started
 @git clone https://github.com/groupschoof/AHRD_snakemake.git@
 
 * Create an empty conda environment:
-@conda env create --name ahrd_snakemake@
+@conda create --name ahrd_snakemake@
 
 * ... and use mamba to install packages in it faster than with conda:
-@mamba env update --name ahrd_snakemake --file ahrd_snakemake/workflow/environment.yaml@
+@mamba env update --name ahrd_snakemake --file AHRD_Snakemake/workflow/environment.yaml@
 
 * Activate the conda environment:
 @conda activate ahrd_snakemake@
 
 * Go to the resources subfolder:
-@cd ahrd_snakemake/resources@
+@cd AHRD_Snakemake/resources@
 
 * Provide the protein sequences that are to be annotated, eg:
 @wget ftp://ftp.ensemblgenomes.org/pub/release-51/plants/fasta/oryza_sativa/pep/Oryza_sativa.IRGSP-1.0.pep.all.fa.gz@
@@ -50,11 +50,11 @@ eg.: Oryza_sativa   ../resources/Oryza_sativa.IRGSP-1.0.pep.all.fa
 Use tabs as column separtor!)
 
 
-* Go to the workflow folder:
-@cd ../workflow@
+* Go back to the main folder:
+@cd ..@
 
 * Start the workflow:
-@snakemake --use-conda --snakefile snakefile.smk@
+@snakemake --use-conda --cores all@
 
 * Once the workflow is finished you will find your annotations (species.ahrd_output.tsv) in the results folder
 

@@ -5,7 +5,7 @@ rule run_ahrd:
         uniref = rules.diamond_uniref90.output,
         jar = rules.get_ahrd.output,
         yml = rules.create_ahrd_input.output
-    output: "../results/{species}.ahrd_output.tsv"
+    output: "results/{species}.ahrd_output.tsv"
     log: "logs/{species}.ahrd_output.log"
     benchmark: "benchmark/{species}.ahrd_output.txt"
     conda: "../envs/run_ahrd.yaml"
