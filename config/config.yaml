@@ -1,0 +1,29 @@
+ahrd:
+  branch: "separate_go_prediction_release"
+  description_settings:
+    token_score_bit_score_weight: 0.6042
+    token_score_database_score_weight: 0.3751
+    token_score_overlap_score_weight: 0.0208
+    blast_dbs:
+      swissprot:
+        weight: 41
+        annotation_score_bit_score_weight: 10.373078
+      uniref:
+        weight: 30
+        annotation_score_bit_score_weight: 3
+  go_settings:
+    token_score_bit_score_weight: 0.611
+    token_score_database_score_weight: 0.0171
+    token_score_overlap_score_weight: 0.3719
+    go_term_score_evidence_code_weight: 0.044978
+    informative_token_threshold: 0.361222
+    blast_dbs:
+      swissprot:
+        weight: 77
+        annotation_score_bit_score_weight: 11.254742
+      uniref:
+        weight: 18
+        annotation_score_bit_score_weight: 2
+cpu_usage:
+  small_jobs: 0.1
+  large_jobs: 0.25

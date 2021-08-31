@@ -3,8 +3,10 @@ rule get_ahrd:
     log: "logs/get_ahrd.log"
     benchmark: "benchmark/get_ahrd.txt"
     conda: "../envs/get_ahrd.yaml"
+    params:
+        branch=config["ahrd"]["branch"],
     shell:
         "rm -rf results/AHRD/ &> {log};"
-        "git clone --branch separate_go_prediction_release https://github.com/groupschoof/AHRD.git results/AHRD &>> {log};"
+        "git clone --branch {params.branch} https://github.com/groupschoof/AHRD.git results/AHRD &>> {log};"
         "cd results/AHRD;"
         "ant dist &>> ../../{log}"

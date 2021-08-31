@@ -1,7 +1,8 @@
 import pandas as pd
 from pathlib import Path
 
-#configfile: "config.yaml"
+configfile: "config/config.yaml"
+
 species_table = pd.read_table("resources/species.tsv").set_index("species")
 SPECIES = species_table.index.tolist()
 

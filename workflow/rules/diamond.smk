@@ -4,7 +4,7 @@ rule make_diamond_db_swissprot:
     log: "logs/make_diamond_db_swissprot.log"
     benchmark: "benchmark/make_diamond_db_swissprot.txt"
     conda: "../envs/diamond.yaml"
-    threads: 8
+    threads: workflow.cores * config["cpu_usage"]["small_jobs"]
     shell: "diamond makedb --in {input} --threads {threads} -d results/uniprot_sprot &> {log}"
 
 rule make_diamond_db_uniref90:
@@ -13,7 +13,7 @@ rule make_diamond_db_uniref90:
     log: "logs/make_diamond_db_uniref90.log"
     benchmark: "benchmark/make_diamond_db_uniref90.txt"
     conda: "../envs/diamond.yaml"
-    threads: 48
+    threads: workflow.cores * config["cpu_usage"]["large_jobs"]
     shell:  "diamond makedb --in {input} --threads {threads} -d results/uniref90 &> {log}"
 
 rule diamond_swissprot:
@@ -23,7 +23,7 @@ rule diamond_swissprot:
     log: "logs/{species}_IN_swissprot.log"
     benchmark: "benchmark/{species}_IN_swissprot.txt"
     conda: "../envs/diamond.yaml"	
-    threads: 8
+    threads: workflow.cores * config["cpu_usage"]["small_jobs"]
     shell: "diamond blastp --query {params.fa} --db {input} --out {output} --sensitive --max-target-seqs 300 --evalue 1 --threads {threads} --tmpdir /dev/shm &> {log}"
 
 rule diamond_uniref90:
@@ -33,5 +33,5 @@ rule diamond_uniref90:
     log: "logs/{species}_IN_uniref90.log"
     benchmark: "benchmark/{species}_IN_uniref90.txt"
     conda: "../envs/diamond.yaml"
-    threads: 48
+    threads: workflow.cores * config["cpu_usage"]["large_jobs"]
     shell: "diamond blastp --query {params.fa} --db {input} --out {output} --mid-sensitive --max-target-seqs 300 --evalue 1 --threads {threads} --tmpdir /dev/shm &> {log}"
