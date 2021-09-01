@@ -90,7 +90,7 @@ Example 2 (<i>Hordeum vulgare</i>):
 h3. 2.3 Runtime Examples
 
 | Download | Reference GO annotations | | 4min |
-| | Uniref90 | | 3h | |
+| | Uniref90 | | 3h |
 | Diamond | Create Uniref90 | 48 Cores | 21min |
 | | Search Rize in Uniref90 | 32 Cores | 1.5h |
 | | Search Barley in Uniref90 | 32 Cores | 4h |
