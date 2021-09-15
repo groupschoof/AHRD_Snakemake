@@ -9,12 +9,13 @@ The user only has to provide the query fasta-files as well as the required bandw
 h2. Table of contents
 
 # "Getting started":#1-getting-started
-# "Hardware requirements":#1-hardware-requirements
-## "Storage Space":#21-storage-space
-## "AHRD's Memory Usage":#22-ahrd's-memory-usage
-## "Runtime Examples":#23-runtime-examples
-# "License":#3-license
-# "Authors":#4-authors
+# "Workflow visualization":#2-workflow-visualization
+# "Hardware requirements":#3-hardware-requirements
+## "Storage Space":#31-storage-space
+## "AHRD's Memory Usage":#32-ahrd's-memory-usage
+## "Runtime Examples":#33-runtime-examples
+# "License":#4-license
+# "Authors":#5-authors
 
 
 h2. 1 Getting started
