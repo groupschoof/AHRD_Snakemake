@@ -3,7 +3,7 @@ rule create_ahrd_input:
         fa = get_species_fasta,
         goa = rules.download_goa.output,
         sprot = rules.download_swissprot.output,
-        uniref90 = rules.download_uniref90.output,
+        uniref90 = rules.extract_header_and_length_uniref90.output,
         diamondSprot = rules.diamond_swissprot.output,
         diamondUniref90 = rules.diamond_uniref90.output,
         ahrdOutput = "results/{species}.ahrd_output.tsv",
