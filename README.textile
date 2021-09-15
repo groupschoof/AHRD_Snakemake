@@ -58,9 +58,14 @@ Use tabs as column separtor!)
 
 * Once the workflow is finished you will find your annotations (species.ahrd_output.tsv) in the results folder
 
-h2. 2 Hardware requirements
+h2. 2 Workflow visualization
 
-h3. 2.1 Storage Space
+@snakemake --rulegraph | dot -Tsvg > rulegraph.svg@
+!./rulegraph.svg!
+
+h2. 3 Hardware requirements
+
+h3. 3.1 Storage Space
 
 | resources | Reference GO annotations | 13 GB |
 | | SwissProt | 0.09 GB |
@@ -76,7 +81,7 @@ h3. 2.1 Storage Space
 The resources are automatically downloaded (except the query fasta files).
 So this also indicates the bandwidth / data usage requirements.
 
-h3. 2.2 AHRD's Memory Usage
+h3. 3.2 AHRD's Memory Usage
 
 Formula:
 11000+fastaSizeInMB*540 = projectedMemUsageInMB
@@ -87,7 +92,7 @@ Example 1 (<i>Oryza sativa</i>):
 Example 2 (<i>Hordeum vulgare</i>):
 11000 + 131 MB * 540 = 81740 MB = 82GB
 
-h3. 2.3 Runtime Examples
+h3. 3.3 Runtime Examples
 
 | Download | Reference GO annotations | | 4min |
 | | Uniref90 | | 3h |
@@ -103,11 +108,11 @@ Diamond scales very well. Give it more cores and memory and it will put them to 
 
 AHRD's bootleneck is parsing the data. The actual annotation step is quick by comparison. Nonetheless,  it's parallelized but doesn't scale very well.
 
-h2. 3 License
+h2. 4 License
 
 See attached file LICENSE.txt for details.
 
-h2. 4 Authors
+h2. 5 Authors
 
 Florian Boecker and Prof. Dr. Heiko Schoof
 
