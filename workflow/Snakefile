@@ -18,3 +18,9 @@ rule all:
     input:
         expand("results/{species}.ahrd_output.tsv", species=SPECIES)
 
+rule download_all:
+    input:
+        query = rules.download_oryza.output,
+        sprotDb = rules.download_swissprot.output,
+        unirefDb = rules.extract_header_and_length_uniref90.output,
+        goa = rules.download_goa.output

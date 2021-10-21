@@ -1,10 +1,10 @@
-h1. AHRD Snakemake
+h1. AHRD Snakemake: HPCA benchmark
 
 "AHRD":https://github.com/groupschoof/AHRD (Automated Assignment of Human Readable Descriptions) annotates proteins with descriptions and GO terms.
 The preparations to run AHRD include making protein databases locally available, performing sequence similarity searches on said databases and creating configuration files.
 
 Snakemake is a python based worflow utility that is used here to perform all neccesarry steps to run AHRD.
-The user only has to provide the query fasta-files as well as the required bandwith, storage space and computing power.
+In this benchmark version of the workflow the query file is the rice proteome obtained from Ensembl Genomes.
 
 h2. Table of contents
 
@@ -26,7 +26,7 @@ h2. 1 Getting started
 @conda install -c conda-forge -c bioconda mamba git@
 
 * Clone the ahrd_snakemake pipeline:
-@git clone https://github.com/groupschoof/AHRD_snakemake.git@
+@git clone --branch "hpca_benchmark" https://github.com/groupschoof/AHRD_Snakemake.git@
 
 * Create an empty conda environment:
 @conda create --name ahrd_snakemake@
@@ -37,27 +37,13 @@ h2. 1 Getting started
 * Activate the conda environment:
 @conda activate ahrd_snakemake@
 
-* Go to the resources subfolder:
-@cd AHRD_Snakemake/resources@
-
-* Provide the protein sequences that are to be annotated, eg:
-@wget ftp://ftp.ensemblgenomes.org/pub/release-51/plants/fasta/oryza_sativa/pep/Oryza_sativa.IRGSP-1.0.pep.all.fa.gz@
-@gunzip Oryza_sativa.IRGSP-1.0.pep.all.fa.gz@
-
-* Edit the species.tsv file to include the desired protein sequence files:
-@nano species.tsv@
-(Put the name of the species in the first collumn and the path of the fasta file in the second
-eg.: Oryza_sativa   resources/Oryza_sativa.IRGSP-1.0.pep.all.fa
-Use tabs as column separtor!)
-
-
-* Go back to the main folder:
-@cd ..@
+* Start the download of all necessary data (performed before the benchmark to keep it from skewing results)
+@snakemake --use-conda --cores 16 --until download_all@
 
 * Start the workflow:
-@snakemake --use-conda --cores all@
+@snakemake --use-conda --cores 64 --stats stats.log@
 
-* Once the workflow is finished you will find your annotations (species.ahrd_output.tsv) in the results folder
+* Once the workflow is finished you will find the total runtime in the stats.log file
 
 h2. 2 Workflow visualization
 
@@ -115,7 +101,7 @@ See attached file LICENSE.txt for details.
 
 h2. 5 Authors
 
-Florian Boecker and Prof. Dr. Heiko Schoof
+Dr. Florian Boecker and Prof. Dr. Heiko Schoof
 
 INRES Crop Bioinformatics
 University of Bonn

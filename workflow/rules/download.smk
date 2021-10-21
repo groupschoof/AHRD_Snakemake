@@ -1,3 +1,12 @@
+rule download_oryza:
+    output: "resources/Oryza_sativa.IRGSP-1.0.pep.all.fa"
+    log: "logs/download_oryza.log"
+    conda: "../envs/download.yaml"
+    benchmark: "benchmark/download_oryza.txt"
+    shell:
+        "aria2c ftp://ftp.ensemblgenomes.org/pub/release-51/plants/fasta/oryza_sativa/pep/Oryza_sativa.IRGSP-1.0.pep.all.fa.gz --dir=resources &> {log};"
+        "gunzip resources/Oryza_sativa.IRGSP-1.0.pep.all.fa.gz &>> {log}"
+
 rule download_swissprot:
     output: "resources/uniprot_sprot.fasta.gz"
     log: "logs/download_swissprot.log"
