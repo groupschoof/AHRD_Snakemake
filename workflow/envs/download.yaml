@@ -3,4 +3,5 @@ channels:
   - bioconda
 dependencies:
   - aria2=1.34.0
+  - lxml=4.6.3
 

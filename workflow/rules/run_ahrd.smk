@@ -3,8 +3,8 @@ rule run_ahrd:
         goa = rules.download_goa.output,
         sprotDb = rules.download_swissprot.output,
         sprotDiamond = rules.diamond_swissprot.output,
-        unirefDb = rules.extract_header_and_length_uniref90.output,
-        unirefDiamond = rules.diamond_uniref90.output,
+        unirefDb = rules.extract_header_and_length_uniref50.output,
+        unirefDiamond = rules.diamond_uniref50.output,
         jar = rules.get_ahrd.output,
         yml = rules.create_ahrd_input.output
     output: "results/{species}.ahrd_output.tsv"

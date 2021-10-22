@@ -14,8 +14,9 @@ h2. Table of contents
 ## "Storage Space":#31-storage-space
 ## "AHRD's Memory Usage":#32-ahrd's-memory-usage
 ## "Runtime Examples":#33-runtime-examples
-# "License":#4-license
-# "Authors":#5-authors
+# "Used Software":#4-used-software
+# "License":#5-license
+# "Authors":#6-authors
 
 
 h2. 1 Getting started
@@ -95,11 +96,18 @@ Diamond scales very well. Give it more cores and memory and it will put them to 
 
 AHRD's bootleneck is parsing the data. The actual annotation step is quick by comparison. Nonetheless,  it's parallelized but doesn't scale very well.
 
-h2. 4 License
+h2. 4 Used Software
+
+To keep the benchmark consistent over time it needs to use the same releases of the data bases that are used.
+We use Uniprot release 2021_02 is be specific.
+Unfortunately old versions of uniref are only available in the XML format.
+So we make use of the python script "unirefxml2fasta.py":https://gist.github.com/keuv-grvl/a5846eb2b6a122823185ccfb55aac12e created by "keuv.grvl":https://gist.github.com/keuv-grvl and "nick-youngblut":https://gist.github.com/nick-youngblut in order to recreate a fasta formatted version of uniref50.
+
+h2. 5 License
 
 See attached file LICENSE.txt for details.
 
-h2. 5 Authors
+h2. 6 Authors
 
 Dr. Florian Boecker and Prof. Dr. Heiko Schoof
 

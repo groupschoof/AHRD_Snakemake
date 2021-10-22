@@ -12,20 +12,26 @@ rule download_swissprot:
     log: "logs/download_swissprot.log"
     conda: "../envs/download.yaml"
     benchmark: "benchmark/download_swissprot.txt"
-    shell: "aria2c https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/RELEASE.metalink --follow-metalink=mem --select-file=6 --file-allocation=none --dir=resources &>{log}"
+    shell:
+        "aria2c https://ftp.uniprot.org/pub/databases/uniprot/previous_releases/release-2021_02/knowledgebase/RELEASE.metalink --follow-metalink=mem --select-file=4 --file-allocation=none --dir=resources &> {log};"
+        "tar -zxvf resources/uniprot_sprot-only2021_02.tar.gz uniprot_sprot.fasta.gz --one-top-level=resources &>> {log};"
+        "rm resources/uniprot_sprot-only2021_02.tar.gz &>> {log};"
 
-rule download_uniref90:
-    output: "resources/uniref90.fasta.gz"
-    log: "logs/download_uniref90.log"
+rule download_uniref50:
+    output: "resources/uniref50.fasta.gz"
+    log: "logs/download_uniref50.log"
     conda: "../envs/download.yaml"
-    benchmark: "benchmark/download_uniref90.txt"
-    shell: "aria2c https://ftp.uniprot.org/pub/databases/uniprot/current_release/uniref/uniref90/RELEASE.metalink --follow-metalink=mem --select-file=5 --file-allocation=none --dir=resources &>{log}"
+    benchmark: "benchmark/download_uniref50.txt"
+    shell:
+        "aria2c https://ftp.uniprot.org/pub/databases/uniprot/previous_releases/release-2021_02/uniref/RELEASE.metalink --follow-metalink=mem --select-file=4 --file-allocation=none --dir=resources &> {log};"
+        "tar -zxvf resources/uniref2021_02.tar.gz uniref50.tar --one-top-level=resources &>> {log};"
+        "rm resources/uniref2021_02.tar.gz &>> {log};"
+        "tar -xvf resources/uniref50.tar uniref50.xml.gz --to-stdout | gunzip | workflow/scripts/unirefxml2fasta.py - --gzip-output -o resources/uniref50.fasta.gz &>> {log};"
 
 rule download_goa:
-    output: "resources/goa_uniprot_all.gaf.gz"
+    output: "resources/goa_uniprot_all.gaf.203.gz"
     log: "logs/download_goa.log"
     conda: "../envs/download.yaml"
     benchmark: "benchmark/download_goa.txt"
-#    shell: "wget -nv --no-check-certificate -P ../resources/ https://ftp.ebi.ac.uk/pub/databases/GO/goa/UNIPROT/goa_uniprot_all.gaf.gz -o {log}"
-#    shell: "wget -nv -P ../resources/ http://current.geneontology.org/annotations/goa_uniprot_all.gaf.gz -o {log}"
-    shell: "aria2c https://ftp.ebi.ac.uk/pub/databases/GO/goa/UNIPROT/goa_uniprot_all.gaf.gz http://current.geneontology.org/annotations/goa_uniprot_all.gaf.gz --file-allocation=none --dir=resources &>{log}"
+    shell:
+        "aria2c https://ftp.ebi.ac.uk/pub/databases/GO/goa/old/UNIPROT/goa_uniprot_all.gaf.203.gz --file-allocation=none --dir=resources &> {log};"

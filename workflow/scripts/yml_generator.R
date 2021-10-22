@@ -1,9 +1,9 @@
 fa <- snakemake@params[["fa"]]
 goa <- snakemake@params[["goa"]]
 sprot <- snakemake@params[["sprot"]]
-uniref90 <- snakemake@params[["uniref90"]]
+uniref50 <- snakemake@params[["uniref50"]]
 diamondSprot <- snakemake@params[["diamondSprot"]]
-diamondUniref90 <- snakemake@params[["diamondUniref90"]]
+diamondUniref50 <- snakemake@params[["diamondUniref50"]]
 ahrdOutput <- snakemake@params[["ahrdOutput"]]
 ahrd_loc <- gsub("dist/ahrd.jar", "", snakemake@params[["jar"]])
 outFile <- snakemake@output[[1]]
@@ -22,9 +22,9 @@ cat(paste("    file: ", diamondSprot, sep=""), file=outFile, append=T, sep="\n")
 cat(paste("    database: ", sprot, sep=""), file=outFile, append=T, sep="\n")
 cat(paste("    filter: ", ahrd_loc , "test/resources/filter_descline_sprot.txt", sep=""), file=outFile, append=T, sep="\n")
 cat("  uniref:", file=outFile, append=T, sep="\n")
-cat(paste("    file: ", diamondUniref90, sep=""), file=outFile, append=T, sep="\n")
+cat(paste("    file: ", diamondUniref50, sep=""), file=outFile, append=T, sep="\n")
 cat("    short_accession_regex: \"^[^_]+_(?<shortAccession>[^_]+)$\"", file=outFile, append=T, sep="\n")
-cat(paste("    database: ", uniref90, sep=""), file=outFile, append=T, sep="\n")
+cat(paste("    database: ", uniref50, sep=""), file=outFile, append=T, sep="\n")
 cat(paste("    filter: ", ahrd_loc, "test/resources/filter_descline_uniref.txt", sep=""), file=outFile, append=T, sep="\n")
 cat("", file=outFile, append=T, sep="\n")
 cat("description_settings:", file=outFile, append=T, sep="\n")
