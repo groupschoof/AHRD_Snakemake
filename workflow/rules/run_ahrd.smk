@@ -2,9 +2,9 @@ rule run_ahrd:
     input:
         goa = rules.download_goa.output,
         sprotDb = rules.download_swissprot.output,
-        sprotDiamond = rules.diamond_swissprot.output,
+        sprotBlast = rules.blast_swissprot.output,
         unirefDb = rules.extract_header_and_length_uniref50.output,
-        unirefDiamond = rules.diamond_uniref50.output,
+        unirefBlast = rules.blast_uniref50.output,
         jar = rules.get_ahrd.output,
         yml = rules.create_ahrd_input.output
     output: "results/{species}.ahrd_output.tsv"

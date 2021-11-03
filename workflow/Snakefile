@@ -9,7 +9,7 @@ SPECIES = species_table.index.tolist()
 include: "rules/common.smk"
 include: "rules/download.smk"
 include: "rules/extract_header_and_length.smk"
-include: "rules/diamond.smk"
+include: "rules/blast.smk"
 include: "rules/get_ahrd.smk"
 include: "rules/create_ahrd_input.smk"
 include: "rules/run_ahrd.smk"
