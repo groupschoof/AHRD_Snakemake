@@ -41,6 +41,9 @@ h2. 1 Getting started
 * Start the download of all necessary data (performed before the benchmark to keep it from skewing results)
 @snakemake --use-conda --cores 16 --until download_all@
 
+* Change your working directory to the workflow folder:
+@cd AHRD_Snakemake@
+
 * Start the workflow:
 @snakemake --use-conda --cores 64 --stats stats.log@
 
