@@ -1,11 +1,11 @@
-rule download_oryza:
-    output: "resources/Oryza_sativa.IRGSP-1.0.pep.all.fa"
-    log: "logs/download_oryza.log"
+rule download_ecoli:
+    output: "resources/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845.ASM584v2.pep.all.fa"
+    log: "logs/download_ecoli.log"
     conda: "../envs/download.yaml"
-    benchmark: "benchmark/download_oryza.txt"
+    benchmark: "benchmark/download_ecoli.txt"
     shell:
-        "aria2c ftp://ftp.ensemblgenomes.org/pub/release-51/plants/fasta/oryza_sativa/pep/Oryza_sativa.IRGSP-1.0.pep.all.fa.gz --dir=resources &> {log};"
-        "gunzip resources/Oryza_sativa.IRGSP-1.0.pep.all.fa.gz &>> {log}"
+        "aria2c ftp://ftp.ensemblgenomes.org/pub/release-51/bacteria/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655_gca_000005845/pep/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845.ASM584v2.pep.all.fa.gz --dir=resources &> {log};"
+        "gunzip resources/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845.ASM584v2.pep.all.fa.gz &>> {log}"
 
 rule download_swissprot:
     output: "resources/uniprot_sprot.fasta"

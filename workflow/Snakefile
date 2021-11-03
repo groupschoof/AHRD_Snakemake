@@ -20,7 +20,7 @@ rule all:
 
 rule download_all:
     input:
-        query = rules.download_oryza.output,
+        query = rules.download_ecoli.output,
         sprotDb = rules.download_swissprot.output,
         unirefDb = rules.download_uniref50.output,
         goa = rules.download_goa.output
