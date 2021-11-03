@@ -16,7 +16,7 @@ rule download_swissprot:
         "aria2c https://ftp.uniprot.org/pub/databases/uniprot/previous_releases/release-2021_02/knowledgebase/RELEASE.metalink --follow-metalink=mem --select-file=4 --file-allocation=none --dir=resources &> {log};"
         "tar -zxvf resources/uniprot_sprot-only2021_02.tar.gz uniprot_sprot.fasta.gz --one-top-level=resources &>> {log};"
         "rm resources/uniprot_sprot-only2021_02.tar.gz &>> {log};"
-        "gunzip uniprot_sprot.fasta.gz &>> {log};"
+        "gunzip resources/uniprot_sprot.fasta.gz &>> {log};"
 
 rule download_uniref50:
     output: "resources/uniref50.fasta"
