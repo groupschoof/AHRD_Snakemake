@@ -25,8 +25,8 @@ h2. 1 Getting started
 * Install mamba and git:
 @conda install -c conda-forge -c bioconda mamba git@
 
-* Clone the ahrd_snakemake pipeline:
-@git clone https://github.com/groupschoof/AHRD_snakemake.git@
+* Clone the AHRD_Snakemake pipeline:
+@git clone https://github.com/groupschoof/AHRD_Snakemake.git@
 
 * Create an empty conda environment:
 @conda create --name ahrd_snakemake@
