@@ -58,10 +58,33 @@ Use tabs as column separtor!)
 @nano config/config.yaml@
 (Parts of the workflow can make use of more resources than others. Small jobs don't scale much after 8 cores. However, large jobs should be given as many cores as you can reasonably spare.)
 
-* Start the workflow:
+* Start the workflow on the local system using all CPU cores:
 @snakemake --use-conda --cores all@
 
 * Once the workflow is finished you will find your annotations (species.ahrd_output.tsv) in the results folder
+
+h3. 1.1 Run the workflow in an HPC environment
+
+You need a "configuration profile":https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles to enable snakemake to use your cluster computing environment (slurm, lsf, etc.). See "https://github.com/snakemake-profiles/doc":https://github.com/snakemake-profiles/doc for a list of available profiles!
+
+* Install cookiecutter in a new conda environment:
+ 
+@conda create --name cookiecutter@
+@conda activate cookiecutter@
+@conda install -c conda-forge cookiecutter@
+
+* Use cookiecutter on the git repository that fits you cluster (this example uses slurm):
+ 
+@cd $HOME/.config/snakemake@
+@cookiecutter https://github.com/Snakemake-Profiles/slurm.git@
+
+* Start the workflow while specifying the number of parallel jobs and the name of your cluster configuration profile (don't forget to first cd back to the workflow folder):
+
+@conda activate ahrd_snakemake@
+@snakemake --use-conda --jobs 16 --profile NAME_OF_YOUR_CLUSTER_CONFIGURATION_PROFILE@
+
+* If you want to run this administrative process non interactively, the subshell needs to have conda initialized and the environment activated:
+@bash -c "source ~/.bashrc; conda activate ahrd_snakemake; snakemake --use-conda --jobs 16 --profile NAME_OF_YOUR_CLUSTER_CONFIGURATION_PROFILE;"@
 
 h2. 2 Workflow visualization
 
