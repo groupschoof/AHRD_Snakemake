@@ -54,6 +54,10 @@ Use tabs as column separtor!)
 * Go back to the main folder:
 @cd ..@
 
+* Edit the workflow configuration file to adjust the CPU usage to your system:
+@nano config/config.yaml@
+(Parts of the workflow can make use of more resources than others. Small jobs don't scale much after 8 cores. However, large jobs should be given as many cores as you can reasonably spare.)
+
 * Start the workflow:
 @snakemake --use-conda --cores all@
 

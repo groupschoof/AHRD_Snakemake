@@ -28,5 +28,5 @@ rule create_ahrd_input:
     conda: "../envs/create_ahrd_input.yaml"
     log: "logs/{species}.ahrd_input.log"
     benchmark: "benchmark/{species}.ahrd_input.txt"
-    threads: workflow.cores * config["cpu_usage"]["small_jobs"]
+    threads: config["cpu_usage"]["small_jobs"]
     script: "../scripts/yml_generator.R"

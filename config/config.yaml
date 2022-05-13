@@ -25,5 +25,5 @@ ahrd:
         weight: 18
         annotation_score_bit_score_weight: 2
 cpu_usage:
-  small_jobs: 0.1
-  large_jobs: 0.25
+  small_jobs: 8
+  large_jobs: 32
