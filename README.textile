@@ -51,7 +51,7 @@ eg.: Oryza_sativa   resources/Oryza_sativa.IRGSP-1.0.pep.all.fa
 Use tabs as column separtor!)
 
 
-* Go back to the main folder:
+* Go back to the main workflow folder:
 @cd ..@
 
 * Edit the workflow configuration file to adjust the CPU usage to your system:
@@ -68,23 +68,24 @@ h3. 1.1 Run the workflow in an HPC environment
 You need a "configuration profile":https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles to enable snakemake to use your cluster computing environment (slurm, lsf, etc.). See "https://github.com/snakemake-profiles/doc":https://github.com/snakemake-profiles/doc for a list of available profiles!
 
 * Install cookiecutter in a new conda environment:
- 
 @conda create --name cookiecutter@
 @conda activate cookiecutter@
 @conda install -c conda-forge cookiecutter@
 
-* Use cookiecutter on the git repository that fits you cluster (this example uses slurm):
- 
+* Create and enter the snakemake configuration folder
+@mkdir $HOME/.config/snakemake@
 @cd $HOME/.config/snakemake@
+
+* Use cookiecutter on the git repository that fits you cluster (this example uses slurm):
 @cookiecutter https://github.com/Snakemake-Profiles/slurm.git@
+Follow the questions and answer them as best you can. Often using the default works just fine.
 
 * Start the workflow while specifying the number of parallel jobs and the name of your cluster configuration profile (don't forget to first cd back to the workflow folder):
-
 @conda activate ahrd_snakemake@
 @snakemake --use-conda --jobs 16 --profile NAME_OF_YOUR_CLUSTER_CONFIGURATION_PROFILE@
 
 * If you want to run this administrative process non interactively, the subshell needs to have conda initialized and the environment activated:
-@bash -c "source ~/.bashrc; conda activate ahrd_snakemake; snakemake --use-conda --jobs 16 --profile NAME_OF_YOUR_CLUSTER_CONFIGURATION_PROFILE;"@
+@bash -c "source ~/.bashrc; conda activate ahrd_snakemake; snakemake --use-conda --jobs 16 --profile NAME_OF_YOUR_CLUSTER_CONFIGURATION_PROFILE;" &> log.txt &@
 
 h2. 2 Workflow visualization
 
