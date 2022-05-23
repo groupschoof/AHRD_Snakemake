@@ -65,19 +65,28 @@ Use tabs as column separtor!)
 
 h3. 1.1 Run the workflow in an HPC environment
 
-You need a "configuration profile":https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles to enable snakemake to use your cluster computing environment (slurm, lsf, etc.). See "https://github.com/snakemake-profiles/doc":https://github.com/snakemake-profiles/doc for a list of available profiles!
+You need a "configuration profile":https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles to enable snakemake to use your cluster computing environment (slurm, lsf, etc.). See "https://github.com/snakemake-profiles/doc":https://github.com/snakemake-profiles/doc for a list of available profiles! In this example we use slurm:
+
+* Create and enter a folder for cookiecutters
+@mkdir $HOME/.cookiecutters@
+@cd $HOME/.cookiecutters@
+
+* Get the slurm cookiecutter and check out a commit know to work with snakemake < 7.0
+@git clone https://github.com/Snakemake-Profiles/slurm.git@
+@cd slurm@
+@git checkout e725a99@
+
+* Create and enter the snakemake configuration folder
+@mkdir $HOME/.config/snakemake@
+@cd $HOME/.config/snakemake@
 
 * Install cookiecutter in a new conda environment:
 @conda create --name cookiecutter@
 @conda activate cookiecutter@
 @conda install -c conda-forge cookiecutter@
 
-* Create and enter the snakemake configuration folder
-@mkdir $HOME/.config/snakemake@
-@cd $HOME/.config/snakemake@
-
-* Use cookiecutter on the git repository that fits you cluster (this example uses slurm):
-@cookiecutter https://github.com/Snakemake-Profiles/slurm.git@
+* Use cookiecutter
+@cookiecutter slurm@
 Follow the questions and answer them as best you can. Often using the default works just fine.
 
 * Start the workflow while specifying the number of parallel jobs and the name of your cluster configuration profile (don't forget to first cd back to the workflow folder):
