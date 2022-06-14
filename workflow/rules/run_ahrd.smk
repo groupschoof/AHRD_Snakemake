@@ -1,3 +1,8 @@
+def calc_mem_usage_in_mb(wildcards, input):
+    sizeInByte = Path(input["sprotDiamond"][0]).stat().st_size
+    projectedMemUsage = 5000+sizeInByte*0.00009
+    return int(projectedMemUsage)
+
 rule run_ahrd:
     input:
         goa = rules.download_goa.output,
@@ -14,4 +19,3 @@ rule run_ahrd:
     threads: config["cpu_usage"]["small_jobs"]
     resources: mem_mb = calc_mem_usage_in_mb
     shell: "java -Xmx{resources.mem_mb}m -jar {input.jar} {input.yml} &> {log}"
-
