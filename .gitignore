@@ -6,3 +6,5 @@
 /logs/
 # ignore the .snakemake directory
 /.snakemake/
+# ignore the busco downloads directory
+/busco_downloads/

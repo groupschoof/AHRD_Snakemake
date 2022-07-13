@@ -96,6 +96,10 @@ Follow the questions and answer them as best you can. Often using the default wo
 * If you want to run this administrative process non interactively, the subshell needs to have conda initialized and the environment activated:
 @bash -c "source ~/.bashrc; conda activate ahrd_snakemake; snakemake --use-conda --jobs 16 --profile NAME_OF_YOUR_CLUSTER_CONFIGURATION_PROFILE;" &> log.txt &@
 
+h3. 1.2 Run the BUSCO
+* Run a BUSCO analysis of each fasta file in species.tsv
+@bash -c "source ~/.bashrc; conda activate ahrd_snakemake; snakemake --use-conda --jobs 16 --until busco_all --profile NAME_OF_YOUR_CLUSTER_CONFIGURATION_PROFILE;" &> log.txt &@
+
 h2. 2 Workflow visualization
 
 @snakemake --rulegraph | dot -Tsvg > rulegraph.svg@

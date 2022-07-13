@@ -13,6 +13,11 @@ include: "rules/diamond.smk"
 include: "rules/get_ahrd.smk"
 include: "rules/create_ahrd_input.smk"
 include: "rules/run_ahrd.smk"
+include: "rules/busco.smk"
+
+rule busco_all:
+    input:
+        expand("results/{species}_busco", species=SPECIES)
 
 rule all:
     input:
