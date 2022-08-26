@@ -97,8 +97,10 @@ Follow the questions and answer them as best you can. Often using the default wo
 @bash -c "source ~/.bashrc; conda activate ahrd_snakemake; snakemake --use-conda --jobs 16 --profile NAME_OF_YOUR_CLUSTER_CONFIGURATION_PROFILE;" &> log.txt &@
 
 h3. 1.2 Run BUSCO
+
 * Run a BUSCO analysis of each fasta file in species.tsv
-@bash -c "source ~/.bashrc; conda activate ahrd_snakemake; snakemake --use-conda --jobs 16 --until busco_all --profile NAME_OF_YOUR_CLUSTER_CONFIGURATION_PROFILE;" &> log.txt &@
+@bash -c "source ~/.bashrc; conda activate ahrd_snakemake; snakemake --use-conda --jobs 1 --until busco_all --profile NAME_OF_YOUR_CLUSTER_CONFIGURATION_PROFILE;" &> log.txt &@
+Make sure to set @--jobs@ to 1. Busco needs to access the EZlab server. If too many jobs access the server at the same time the connection can be refused.
 
 h2. 2 Workflow visualization
 

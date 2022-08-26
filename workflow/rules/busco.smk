@@ -1,7 +1,8 @@
 rule busco:
     params: fa = get_species_fasta
-    output: "results/{species}_busco"
+    output: directory("results/{species}_busco")
     log: "logs/{species}_busco.log"
     benchmark: "benchmark/{species}_busco.txt"
     conda: "../envs/busco.yaml"
-    shell: "busco -m protein -i {params.fa} -o {output} --auto-lineage &> {log}"
+    threads: config["cpu_usage"]["large_jobs"]
+    shell: "busco -m protein -i {params.fa} -o {output} --cpu {threads} --auto-lineage &> {log}"
