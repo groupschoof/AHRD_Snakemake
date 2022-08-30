@@ -102,6 +102,12 @@ h3. 1.2 Run BUSCO
 @bash -c "source ~/.bashrc; conda activate ahrd_snakemake; snakemake --use-conda --jobs 1 --until busco_all --profile NAME_OF_YOUR_CLUSTER_CONFIGURATION_PROFILE;" &> log.txt &@
 Make sure to set @--jobs@ to 1. Busco needs to access the EZlab server. If too many jobs access the server at the same time the connection can be refused.
 
+h3. 1.2 Run Prot_SpaM
+* Run "Prot_SpaM":https://github.com/jschellh/ProtSpaM (estimate evolutionary distances between species based on their complete or incomplete proteomes) on the fasta files in species.tsv
+@bash -c "source ~/.bashrc; conda activate ahrd_snakemake; snakemake --use-conda --jobs 1 --until ProtSpaM --profile NAME_OF_YOUR_CLUSTER_CONFIGURATION_PROFILE;" &> log_ProtSpaM.txt &@
+Because ProtSpaM runs in a single job the number specified for @--jobs@ is not important.
+The result ProtSpaM produces is a distance matrix found in @results/ProtSpaM.dmat@.
+
 h2. 2 Workflow visualization
 
 @snakemake --rulegraph | dot -Tsvg > rulegraph.svg@

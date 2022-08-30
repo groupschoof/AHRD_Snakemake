@@ -14,10 +14,16 @@ include: "rules/get_ahrd.smk"
 include: "rules/create_ahrd_input.smk"
 include: "rules/run_ahrd.smk"
 include: "rules/busco.smk"
+include: "rules/get_ProtSpaM.smk"
+include: "rules/run_ProtSpaM.smk"
 
 rule busco_all:
     input:
         expand("results/{species}_busco", species=SPECIES)
+
+rule ProtSpaM:
+    input:
+        rules.run_ProtSpaM.output
 
 rule all:
     input:
