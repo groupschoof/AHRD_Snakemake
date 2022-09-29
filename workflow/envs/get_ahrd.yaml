@@ -1,8 +1,0 @@
-channels:
-  - conda-forge
-  - bioconda
-dependencies:
-  - git=2.30.2
-  - ant=1.10.0
-  - java-jdk=8.0.112
-

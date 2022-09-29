@@ -2,5 +2,5 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - seqkit=2.0.0
+  - "seqkit>=2.0.0"
 

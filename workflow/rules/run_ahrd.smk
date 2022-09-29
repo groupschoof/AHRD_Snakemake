@@ -15,7 +15,7 @@ rule run_ahrd:
     output: "results/{species}.ahrd_output.tsv"
     log: "logs/{species}.ahrd_output.log"
     benchmark: "benchmark/{species}.ahrd_output.txt"
-    conda: "../envs/run_ahrd.yaml"
+    conda: "../envs/ahrd.yaml"
     threads: config["cpu_usage"]["small_jobs"]
     resources: mem_mb = calc_mem_usage_in_mb
     shell: "java -Xmx{resources.mem_mb}m -jar {input.jar} {input.yml} &> {log}"
