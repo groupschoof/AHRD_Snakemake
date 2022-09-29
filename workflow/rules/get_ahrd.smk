@@ -2,7 +2,7 @@ rule get_ahrd:
     output: "results/AHRD/dist/ahrd.jar"
     log: "logs/get_ahrd.log"
     benchmark: "benchmark/get_ahrd.txt"
-    conda: "../envs/get_ahrd.yaml"
+    conda: "../envs/ahrd.yaml"
     params:
         branch=config["ahrd"]["branch"],
     shell:
