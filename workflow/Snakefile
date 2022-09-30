@@ -3,6 +3,8 @@ from pathlib import Path
 
 configfile: "config/config.yaml"
 
+containerized: "docker://fboecker/ahrd_snakemake:latest" 
+
 species_table = pd.read_table("resources/species.tsv").set_index("species")
 SPECIES = species_table.index.tolist()
 
