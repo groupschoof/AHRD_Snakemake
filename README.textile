@@ -9,8 +9,8 @@ The user only has to provide the query fasta-files as well as the required bandw
 h2. Table of contents
 
 # "Getting started":#1-getting-started
-## "Run the workflow unsing conda for runtime installation of dependencies":#11-run-the-workflow-unsing-conda-for-runtime-installation-of-dependencies
-## "Use Singularity to run the workflow in a Docker container":#12-use-singularity-to-run-the-workflow-in-a-docker-container
+## "Run the workflow unsing conda for runtime installation of dependencies":#11-run-the-workflow-unsing-conda-for-runtime-installation-of-dependencies-faster-and-should-be-tried-first
+## "Use Singularity to run the workflow in a Docker container":#12-use-singularity-to-run-the-workflow-in-a-docker-container-more-stable-but-slower
 ## "Run the workflow in an HPC environment":#13-run-the-workflow-in-an-hpc-environment
 # "Workflow visualization":#2-workflow-visualization
 # "Hardware requirements":#3-hardware-requirements
