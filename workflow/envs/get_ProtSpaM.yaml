@@ -2,5 +2,5 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - git=2.30.2
-  - make=4.3
+  - "git>=2.30.2"
+  - "make>=4.3"
