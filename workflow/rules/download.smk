@@ -10,7 +10,7 @@ rule download_uniref90:
     log: "logs/download_uniref90.log"
     conda: "../envs/download.yaml"
     benchmark: "benchmark/download_uniref90.txt"
-    shell: "aria2c https://ftp.uniprot.org/pub/databases/uniprot/current_release/uniref/uniref90/RELEASE.metalink --follow-metalink=mem --select-file=5 --file-allocation=none --dir=resources &>{log}"
+    shell: "aria2c https://ftp.uniprot.org/pub/databases/uniprot/current_release/uniref/uniref90/RELEASE.metalink --follow-metalink=mem --file-allocation=none --dir=resources &>{log}"
 
 rule download_goa:
     output: "resources/goa_uniprot_all.gaf.gz"
